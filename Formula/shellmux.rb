@@ -11,11 +11,11 @@ class Shellmux < Formula
   depends_on "bash"        # macOS ships 3.2; the scheduler needs >= 4 for fractional read -t
   depends_on "coreutils"   # GNU timeout, mkfifo
   depends_on "socat"
-  on_linux do
-    depends_on "util-linux" # flock
-  end
   on_macos do
     depends_on "flock"      # standalone flock formula on macOS
+  end
+  on_linux do
+    depends_on "util-linux" # flock
   end
 
   def install
@@ -24,8 +24,8 @@ class Shellmux < Formula
     libexec.install "src/shellmux", "src/sched.sh"
     (bin/"shellmux").write <<~SH
       #!/bin/bash
-      export PATH="#{Formula["coreutils"].opt_libexec}/gnubin:#{HOMEBREW_PREFIX}/bin:#{HOMEBREW_PREFIX}/sbin:$PATH"
-      exec "#{Formula["bash"].opt_bin}/bash" "#{libexec}/shellmux" "$@"
+      export PATH="#{formula_opt_libexec("coreutils")}/gnubin:#{HOMEBREW_PREFIX}/bin:#{HOMEBREW_PREFIX}/sbin:$PATH"
+      exec "#{formula_opt_bin("bash")}/bash" "#{libexec}/shellmux" "$@"
     SH
     chmod 0755, bin/"shellmux"
 
