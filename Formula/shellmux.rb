@@ -4,14 +4,13 @@ class Shellmux < Formula
   url "https://github.com/bobbyrathoree/shellmux/archive/refs/tags/v0.1.0.tar.gz"
   sha256 "6fc0aaa66157d0c595a16ec2c2861acffc26c117fc50d59270f275387869cce4"
   license "MIT"
-  version "0.1.0"
 
   # The real dependency set. shellmux is Linux-first; on macOS these brewed deps
   # supply what the base system lacks (flock, GNU timeout, bash >= 4). The wrapper
   # below puts them on PATH so the broker resolves them at runtime.
   depends_on "bash"        # macOS ships 3.2; the scheduler needs >= 4 for fractional read -t
-  depends_on "socat"
   depends_on "coreutils"   # GNU timeout, mkfifo
+  depends_on "socat"
   on_linux do
     depends_on "util-linux" # flock
   end
