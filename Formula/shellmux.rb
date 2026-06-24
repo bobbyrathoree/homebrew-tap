@@ -1,8 +1,8 @@
 class Shellmux < Formula
   desc "Content-blind topic pub/sub broker in shell with a race-free deadline scheduler"
   homepage "https://github.com/bobbyrathoree/shellmux"
-  url "https://github.com/bobbyrathoree/shellmux/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "6fc0aaa66157d0c595a16ec2c2861acffc26c117fc50d59270f275387869cce4"
+  url "https://github.com/bobbyrathoree/shellmux/archive/refs/tags/v0.1.1.tar.gz"
+  sha256 "fb8f8230192c5a34542e41f3f3c96af8647b4ab34a29477dc259843c43015baf"
   license "MIT"
 
   # The real dependency set. shellmux is Linux-first; on macOS these brewed deps
@@ -34,7 +34,7 @@ class Shellmux < Formula
   end
 
   test do
-    assert_match "shellmux 0.1.0", shell_output("#{bin}/shellmux --version")
+    assert_match "shellmux 0.1.1", shell_output("#{bin}/shellmux --version")
     # a real serve/sub/pub round-trip would need background processes + a socket;
     # the version smoke confirms the wrapper resolves bash + the libexec script.
   end
